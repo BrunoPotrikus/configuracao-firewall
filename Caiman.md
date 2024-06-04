@@ -104,18 +104,23 @@ iptables -A FORWARD -i eth1 -p tcp -m tcp --dport 443 -j ACCEPT
 ```
 iptables -A FORWARD -s 192.168.3.0/24 -d 192.168.2.8 -j ACCEPT
 ```
-- Permite pacotes de entrada da subrede 192.168.3.0/24.
-- Permite que dispositivos da subrede local acessem o servidor de aplicações.
+- Permite que a subrede `192.168.3.0/24` acesse o servidor de aplicações com IP `0192.168.2.8`.
 
-## 13. Registrar tentativas de conexões bloqueadas para análise e monitoramento de segurança
+## 13. Configurar NAT (Masquerade)
 
 ```
-iptables -A INPUT -j LOG --log-prefix "IPTables-Rejected: " --log-level 4
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 ```
-- Registra todas as tentativas de conexão bloqueadas com o prefixo "IPTables-Rejected:" e nível de log 4 (informativo).
-- Monitora e analisa tentativas de conexão rejeitadas.
+- Configura a tradução de endereços de rede (NAT) para a interface conectada à Internet (`eth0`), permitindo que os dispositivos na rede local compartilhem um único endereço IP público.
 
-## 14. Bloquear todo o restante do tráfego de entrada
+## 14. Registrar Conexões Bloqueadas
+
+```
+iptables -A FORWARD -j LOG --log-prefix "IPTables-Rejected: " --log-level 4
+```
+- Registra tentativas de conexão bloqueadas para análise de segurança, adicionando um prefixo "IPTables-Rejected" aos logs.
+
+## 15. Bloquear todo o restante do tráfego de entrada
 
 ```
 iptables -A INPUT -j DROP
