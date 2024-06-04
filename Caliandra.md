@@ -20,3 +20,7 @@ iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
 ```
+- Define políticas padrão para as cadeias de entrada, encaminhamento e saída.
+  - INPUT: Bloquear todas as conexões de entrada.
+  - FORWARD: Bloquear todas as conexões de encaminhamento.
+  - OUTPUT: Permitir todas as conexões de saída.
