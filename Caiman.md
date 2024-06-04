@@ -1,4 +1,4 @@
-# Configurações Caliandra
+# Configurações Caiman
 
 ## 1. Limpar todas as regras existentes
 
