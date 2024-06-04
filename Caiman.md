@@ -123,7 +123,7 @@ iptables -A FORWARD -j LOG --log-prefix "IPTables-Rejected: " --log-level 4
 ## 15. Bloquear todo o restante do tráfego de entrada
 
 ```
-iptables -A INPUT -j DROP
+iptables -A FORWARD -j DROP
 ```
 - Bloqueia todos os pacotes de entrada que não foram explicitamente permitidos.
 - Garante que apenas o tráfego autorizado possa acessar o servidor.
