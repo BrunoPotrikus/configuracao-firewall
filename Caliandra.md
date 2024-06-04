@@ -11,6 +11,8 @@ iptables -X
 - Remove todas as regras e cadeias definidas no iptables.
 - Garante a inicialização com uma configuração limpa.
 
+#
+
 ## 2. Definir política padrão para INPUT, FORWARD e OUTPUT
 
 ```
